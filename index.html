@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>周易算卦</title>
+<link rel="icon" type="image/svg+xml" href="yao-icon.svg">
 <style>
 
 
@@ -526,6 +527,21 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- 图标下载区 -->
+<div style="text-align:center;padding:30px 20px 40px;">
+  <div style="display:inline-flex;align-items:center;gap:16px;padding:16px 28px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+    <img src="yao-icon.svg" width="64" height="64" alt="爻" style="border-radius:8px;display:block;">
+    <div style="text-align:left;">
+      <div style="font-weight:bold;color:var(--accent);letter-spacing:3px;font-size:1.1em;">爻 · 图标</div>
+      <div style="font-size:0.8em;color:#8c7b6d;margin:4px 0;">512×512 SVG / PNG</div>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <a href="yao-icon.svg" download="爻.svg" style="text-decoration:none;font-size:0.85em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:4px 12px;">⬇ SVG</a>
+        <button onclick="downloadPNG()" style="text-decoration:none;font-size:0.85em;color:#fff;background:var(--accent);border:none;border-radius:6px;padding:4px 12px;cursor:pointer;font-family:inherit;">⬇ PNG</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 // ==================== 八卦定义 ====================
 // bit0=初爻(trigram bottom), yang=1, yin=0
@@ -1166,6 +1182,29 @@ function escapeHtml(str) {
   var div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
+}
+
+function downloadPNG() {
+  var img = new Image();
+  img.onload = function() {
+    var canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 512;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, 512, 512);
+    canvas.toBlob(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = '爻.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('PNG 图标下载中……');
+    }, 'image/png');
+  };
+  img.src = 'yao-icon.svg';
 }
 
 function showToast(msg) {
