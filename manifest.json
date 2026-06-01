@@ -1,0 +1,19 @@
+{
+  "name": "爻 - 周易算卦",
+  "short_name": "爻",
+  "description": "周易六爻占卜，逐爻选择卦象，在线解卦",
+  "start_url": "/zhouyi-divination/",
+  "scope": "/zhouyi-divination/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e8",
+  "theme_color": "#8b4513",
+  "icons": [
+    {
+      "src": "yao-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
